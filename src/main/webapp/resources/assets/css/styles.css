@@ -225,3 +225,29 @@ footer .container-fluid {
 	padding: 10px;
 }
 
+/* board */
+.ui-board table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.ui-board table tr th {
+	text-align: center;
+	padding: 8px 10px;
+	border: 1px solid #ddd;
+}
+
+.ui-board table tr td {
+	text-align: center;
+	padding: 8px 10px;
+	border: 1px solid #ddd;	
+}
+
+.ui-board table tr td.text-title {
+	text-align: left;
+}
+
+.pagination-wrap {
+	display: flex;
+	justify-content: center;
+}
