@@ -1,0 +1,26 @@
+java version 11 변경 
+spring framework version 5.0.7.RELEASE 변경
+javax.servlet-api 3.1.0 변경 
+lombok 1.18.28 추가 
+
+log4jdbc.log4j2.properties 추가
+
+mybatis-spring
+HikariCP 등 db 관련 추가 
+
+행정구역 데이터 추가
+약국정보 데이터 추가
+오라클유저 추가 
+CREATE USER mypharm IDENTIFIED BY 1234;
+GRANT CREATE SESSION TO mypharm;
+GRANT RESOURCE TO mypharm;
+
+CREATE TABLE dong (
+    idx NUMBER PRIMARY KEY NOT NULL
+    ,si VARCHAR2(50) NOT NULL
+    ,gungu VARCHAR2(50) 
+    ,dong VARCHAR2(50) 
+    ,ri VARCHAR2(50)
+    ,lat NUMBER NOT NULL
+    ,lng NUMBER NOT NULL
+)

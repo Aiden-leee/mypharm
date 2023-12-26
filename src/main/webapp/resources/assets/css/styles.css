@@ -1,0 +1,227 @@
+ul, li {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+.main-logo {
+	display: flex;
+	margin-bottom: 0;
+}
+
+.carousel-item {
+  height: 360px;
+}
+
+.carousel-item img {
+  object-fit: cover;
+  height: 100%;
+}
+
+.main-banner {
+}
+.banner-container {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 360px;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.55), transparent);
+  z-index: 9;
+}
+.banner-container .banner-title-wrap {
+  position: relative;
+  height: 100%;
+}
+
+.banner-container .banner-title {
+  position: absolute;
+  top: 50%;
+  font-size: 30px;
+  transform: translateY(-50%);
+}
+.banner-container .banner-title > div {
+  margin-bottom: 5px;
+}
+.banner-container .banner-title > div > span {
+  display: inline-block;
+  color: #fff;
+}
+
+.banner-container .banner-title > div.txt1 strong {
+  color: #f1eca7;
+}
+.banner-container .banner-title > div.txt2 strong {
+  color: #f6dbe4;
+}
+.banner-container .banner-title > div.txt3 strong {
+  color: #42f09d;
+}
+
+.search-wrap > .input-group {
+  margin-bottom: 10px;
+}
+
+.pharmacy-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin: 30px 0;
+}
+
+.spinner-border-wrap {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.3);
+  z-index: 9;
+}
+.spinner-border-wrap .spinner-border {
+  color: #198754;
+}
+
+#initSettingMap,
+#actionPharm {
+  width: 82px;
+}
+
+footer .container-fluid {
+  height: 250px;
+  background: #eee;
+}
+
+/* map */
+
+.tg_map {
+	border: 1px solid #ccc;
+}
+
+.map_markerbox .map_group {
+  position: relative;
+  padding: 5px 15px 5px 6px;
+  background: #e7e7e7;
+  border: 2px solid #c8c8c8;
+  border-radius: 40px;
+}
+
+.map_markerbox.open .map_group {
+  background: #fff;
+  border: 2px solid #d7575a;
+}
+
+.map_markerbox.open .map_group .balloon_tail:before {
+  border-top: 10px solid #d7575a;
+}
+.map_markerbox.open .map_group .balloon_tail:after {
+  border-top: 10px solid #fff;
+}
+
+.map_markerbox.open .map_group .map_marker .ico .pharmacy_ico {
+  background: url("/resources/assets/images/pharm_icon.svg") no-repeat center;
+}
+
+.map_markerbox .map_group .balloon_tail {
+  position: absolute;
+  bottom: 0px;
+  left: 17px;
+  display: inline-block;
+}
+.map_markerbox .map_group .balloon_tail:before {
+  content: "";
+  position: absolute;
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-top: 10px solid #c8c8c8;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid transparent;
+}
+.map_markerbox .map_group .balloon_tail:after {
+  content: "";
+  position: absolute;
+  display: inline-block;
+  width: 0;
+  height: 0;
+  bottom: -17px;
+  border-top: 10px solid #e7e7e7;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid transparent;
+}
+.map_markerbox .map_group .map_marker {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.map_markerbox .map_group .map_marker .ico {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.map_markerbox .map_group .map_marker .ico .pharmacy_ico {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/resources/assets/images/pharm_off_icon.svg") no-repeat
+    center;
+}
+
+.map_markerbox .map_group .map_marker .ico:before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  background: #f4f4f4;
+  border-radius: 40px;
+}
+.map_markerbox.open .map_group .map_marker .name {
+	color: #666;
+}
+.map_markerbox .map_group .map_marker .name {
+	max-width: 120px;
+ 	white-space: nowrap;
+ 	text-overflow: ellipsis;
+ 	overflow: hidden;
+  	color: #b6b6b6;
+}
+
+
+/* ui */
+.ui-title {
+	padding-bottom: 10px;
+	border-bottom: 1px solid #d9d9d9;
+}
+
+.pharmacy-view > table {
+	width: 100%;
+}
+.pharmacy-view .empty-pharmacy tr td{
+	padding: 20px 10px;
+    color: #666;
+    text-align: center;
+}
+
+.pharmacy-view-table tr th{
+	padding: 10px 0;
+	border-right: 1px solid #ccc;
+}
+
+.pharmacy-view-table tr td {
+	padding: 10px;
+}
+

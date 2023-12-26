@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.prj.mypharm.mapper.PharmMapper">
+
+	<!-- // 약국 목록
+	ArrayList<PharmVO> selectPharm(int pageNo, int numberPerPage) throws SQLException;-->
+	<select id="selectAllPharm" resultType="com.prj.mypharm.domain.PharmDTO" >
+	<!-- 	SELECT b.*
+		FROM (
+			SELECT ROWNUM no, t.*
+			FROM (
+				SELECT q_no, faq_no, question, answer
+				FROM faq
+				WHERE REGEXP_LIKE ( question, #{param3}, 'i' )
+				ORDER BY q_no DESC
+			) t
+		) b
+		WHERE b.no BETWEEN (#{param1}-1) * #{param2} + 1 AND ((#{param1}-1) * #{param2}) + #{param2} -->
+		
+		<!-- WHERE REGEXP_LIKE ( dutyaddr, '서울특별시', 'i' ) -->
+		<!-- SELECT b.*
+		    FROM (
+		        SELECT ROWNUM no, t.*
+		        FROM (
+		            SELECT *
+					FROM pharmacy
+					ORDER BY rnum DESC
+		    ) t
+		) b
+		WHERE b.no BETWEEN (#{param1}-1) * #{param2} + 1 AND ((#{param1}-1) * #{param2}) + #{param2} -->
+		 <![CDATA[
+		SELECT /*+INDEX_ASC(pharmacy PHARM_INDEX)*/ *
+		FROM pharmacy
+		WHERE rnum > 0
+		]]>
+	</select>	
+
+	<!-- ArrayList<PharmDTO> getBoundPharmList(double lat, double lng) throws SQLException -->
+	<select id="getBoundPharmList" resultType="com.prj.mypharm.domain.PharmDTO" >
+		<![CDATA[
+			SELECT ROWNUM, fc.*
+			FROM (
+			    SELECT RNUM, DUTYADDR, DUTYNAME, DUTYETC, DUTYTEL1, DUTYTIME1S, DUTYTIME1C, DUTYTIME2S,
+			        DUTYTIME2C, DUTYTIME3S, DUTYTIME3C, DUTYTIME4S, DUTYTIME4C, DUTYTIME5S, DUTYTIME5C,
+			        DUTYTIME6S, DUTYTIME6C, DUTYTIME7S, DUTYTIME7C, DUTYTIME8S, DUTYTIME8C, HPID, POSTCDN1,
+			        POSTCDN2, WGS84LAT, WGS84LON,
+			            TO_NUMBER( (6371 * acos ( 
+			                        cos ( radians(#{lat}) ) * cos( radians( WGS84LAT ) ) * cos( radians( WGS84LON ) - radians( #{lng} ) )
+			                        + sin ( radians(#{lat} ) ) * sin( radians( WGS84LAT ) )
+			            )) ) distance
+			    FROM pharmacy
+			) fc
+			WHERE distance <= 1 AND ROWNUM <= 50
+		]]>
+	</select>
+	
+	<!-- // 동네 약국 조회 
+	ArrayList<PharmDTO> getDongPharmList(String si, String gu, String dong, int pageNo, int numberPerPage) -->
+	<select id="getDongPharmList" resultType="com.prj.mypharm.domain.PharmDTO">
+		SELECT *
+		FROM pharmacy
+		<choose>
+			<when test="param2 == '특별자치'">
+				WHERE REGEXP_LIKE (dutyaddr, '${param1}')
+			</when>
+			<otherwise>
+				WHERE REGEXP_LIKE (dutyaddr, '${param1} ${param2}')
+			</otherwise>
+		</choose>
+		AND REGEXP_LIKE (dutyaddr, '${param3}')
+	</select>
+    
+</mapper>
+
