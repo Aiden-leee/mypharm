@@ -1,4 +1,15 @@
 
+// 게시판 서비스 
+let boardService = (function(){
+	
+	
+	return {
+	
+	}
+})();
+
+
+// 행정구역 서비스 
 let localService = (function(){
 	
 	// 구 조회 
@@ -55,6 +66,7 @@ let localService = (function(){
 })();
 
 
+// 약국 서비스 
 var pharmService = (function(){
 	
 	// 약국 조회 	

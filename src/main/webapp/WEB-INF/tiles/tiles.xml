@@ -21,7 +21,7 @@
    		
    		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" />
    		
-   		<put-attribute name="title" value="SIST5 Spring tiles" />
+   		<put-attribute name="page" value="{1}" />
    </definition>
 	
 	<!--  customer.notice -->    

@@ -1,3 +1,10 @@
+body {
+	height: 100vh;
+}
+.wrap {
+	height: 100%;
+}
+
 ul, li {
 	list-style: none;
 	padding: 0;
@@ -88,7 +95,7 @@ ul, li {
 }
 
 footer .container-fluid {
-  height: 250px;
+  height: 280px;
   background: #eee;
 }
 
@@ -226,9 +233,53 @@ footer .container-fluid {
 }
 
 /* board */
+.ui-board-top {
+	text-align: right;
+	padding: 15px 0 8px;
+}
+
 .ui-board table {
 	width: 100%;
 	border-collapse: collapse;
+}
+.ui-board .txt {
+	display: inline-block;
+	max-width: 120px;
+ 	white-space: nowrap;
+ 	text-overflow: ellipsis;
+ 	overflow: hidden;
+}
+
+.ui-board .board-content {
+	min-height: 300px;
+}
+
+.ui-board-detail-head > h3 {
+	color: #333;
+	padding: 20px 0;
+}
+
+.ui-board-detail-head .detail-row {
+	display: flex;
+	justify-content: space-between;
+	color: #777;
+}
+
+.ui-board-detail-head .detail-row .writer {
+	flex: 1 1 auto;	
+	color: #6fb28e;
+}
+
+.ui-board-detail-head .detail-row .regdate {
+	display: inline-block; 
+	margin-right: 10px;	
+}
+.ui-board table {
+	table-layout: fixed;
+}
+.ui-board table tbody tr:hover th,
+.ui-board table tbody tr:hover td {
+	background: #efefef;
 }
 
 .ui-board table tr th {
@@ -247,7 +298,85 @@ footer .container-fluid {
 	text-align: left;
 }
 
+.ui-board table tr td.text-title span {
+	max-width: 100%;
+	display: block;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.ui-board table tr td.text-title span > a{
+	color: #666;
+	text-decoration: none;
+}
+
+/* pagination */
 .pagination-wrap {
 	display: flex;
 	justify-content: center;
+}
+
+.pagination-wrap .page-link.disabled {
+	opacity: 0.6;
+	background: #ddd;
+}
+
+
+
+.pagination-wrap .pagination .page-item .page-link.active {
+	background: #64b88f;
+	color: #fff;
+	border: 1px solid #64b88f;
+}
+
+.pagination-wrap .pagination .page-item .page-link {
+	color: #a3a3a3;
+}
+.pagination-wrap .pagination .page-item .page-link:hover {
+	background: #66a084;
+	border: 1px solid #66a084;
+	color: #fff;	
+}
+
+.ui-board-detail-content {
+	min-height: 250px;
+	margin-top: 20px;
+	padding: 20px 0;
+	border-top: 1px solid #aaa;
+	border-bottom: 1px solid #aaa;
+}
+
+.ui-board-bottom.center {
+	text-align: center;
+}
+
+.ui-board-bottom.right {
+	text-align: right;	
+}
+
+
+.btn.default {
+	color: #666;
+	background: #efefef;
+}
+.btn.point {
+	background: #25a266;
+	color: #fff;	
+}
+
+.btn.point2 {
+	background: #e9e07b;
+    color: #333;
+    border: 0;
+}
+
+.btn:active:first-child {
+	background: #efefef;
+	border: none;	
+}
+
+.btn:not(.btn-check)+.btn:active {
+	background: #efefef;
+	border: none;	
 }

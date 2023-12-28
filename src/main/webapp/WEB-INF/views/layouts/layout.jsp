@@ -9,10 +9,13 @@
   <tiles:insertAttribute name="head"/>
   
   <body>
+  	<script>
+	  	let cpage = `<tiles:getAsString name="page" />`;
+  	</script>
   	<div class="wrap">
 	   <!-- header  -->
 	  	<tiles:insertAttribute name="header"/>
-	  	
+	
   		<!-- Content here -->
 	    <%@ include file="/WEB-INF/views/layouts/main_banner.jsp" %>
 		

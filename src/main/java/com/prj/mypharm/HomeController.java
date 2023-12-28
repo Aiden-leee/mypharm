@@ -19,7 +19,7 @@ public class HomeController {
 		log.info("> HomeController.. ");
 		
 		
-		return "main.tiles";
+		return "base/pharm/index.tiles";
 	}
 	
 }

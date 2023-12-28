@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.prj.mypharm.mapper.NoticeMapper">
+
+	<!-- 공지사항 페이징 목록 
+	List<NoticeDTO> noticeSelect(Criteria cri) throws SQLException;-->
+	<select id="noticeSelect" resultType="com.prj.mypharm.domain.NoticeDTO" >
+		<![CDATA[
+		SELECT *
+		FROM (
+		    SELECT rownum rn, seq, title, content, writer, regdate, updated
+		    FROM notice
+		    WHERE seq > 0 AND rownum BETWEEN 1 AND ${ pageNum } * ${ amount }
+		) b
+		WHERE rn > ( ${ pageNum }-1) * ${ amount }
+		]]>
+	</select> 
+   
+   <!-- 공지사항 총 게시글 
+	int noticeTotalRows() throws SQLException; -->
+   	<select id="noticeTotalRows" resultType="int">
+   		<![CDATA[
+   		SELECT COUNT(*)
+		FROM notice
+		WHERE seq > 0
+		]]>
+   	</select> 
+   	
+   	
+   	<!-- 게시글 상세 
+	NoticeDTO noticeSelectOne(int seq, String userid) throws SQLException; -->
+   <select id="noticeSelectOne" resultType="com.prj.mypharm.domain.NoticeDTO">
+   		<![CDATA[
+	   	SELECT *
+		FROM notice
+		WHERE seq = #{seq}
+		]]>
+   </select>
+</mapper>
+

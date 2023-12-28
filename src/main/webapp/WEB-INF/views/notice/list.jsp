@@ -1,13 +1,17 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <div class="row find-pharm-title">
 	 <h3 class="ui-title px-0">공지사항</h3>
-	 <p class="px-0">마이팜 공지사항</p>
+	 <!-- <p class="px-0"></p> -->
 </div>
 <div class="row">
 	<div class="col px-0 pb-5">
 		<div class="ui-board notice">
+			<div class="ui-board-top">
+				<span>Total: <strong>${pageMaker.total}</strong></span>
+			</div>
 			<table width="100%">
 				<colgroup>
 					<col width="100px" />
@@ -24,47 +28,47 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>1</td>
-						<td class="text-title"><span><a href="#">공지사항 글입니다.</a></span></td>
-						<td>관리자</td>
-						<td>2023.12.28</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td class="text-title"><span><a href="#">공지사항 글입니다.</a></span></td>
-						<td>관리자</td>
-						<td>2023.12.28</td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td class="text-title"><span><a href="#">공지사항 글입니다.</a></span></td>
-						<td>관리자</td>
-						<td>2023.12.28</td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td class="text-title"><span><a href="#">공지사항 글입니다.</a></span></td>
-						<td>관리자</td>
-						<td>2023.12.28</td>
-					</tr>
+					<c:choose >
+						<c:when test="${ empty list }">
+							<tr>
+								<td colspan="4" style="padding: 60px 0;">공지사항 글이 없습니다.</td>
+							</tr>
+						</c:when>
+						<c:otherwise>
+							<c:forEach items="${list }" var="item">
+								<tr>
+									<td>${item.seq }</td>
+									<td class="text-title"><span><a href="${item.seq}" class="seq_no">${item.title }</a></span></td>
+									<td>${item.writer }</td>
+									<td><fmt:formatDate value="${item.regdate }" pattern="yyyy.MM.dd"/></td>
+								</tr>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
+					
 				</tbody>
 			</table>
-			
+			<form id="noticeListForm" action="/notice/detail" method="get">
+				<input type="hidden" name="pageNum" value="${pageMaker.criteria.pageNum }"/>
+				<input type="hidden" name="amount" value="${pageMaker.criteria.amount }" />
+			</form>
 			<!-- pagination -->
 			<div class="pagination-wrap pt-5 pb-3">
 				<nav aria-label="Page navigation example">
 				  <ul class="pagination">
 				    <li class="page-item">
-				      <a class="page-link" href="#" aria-label="Previous">
+				      <a class="page-link ${pageMaker.prev ? '' : 'disabled' }" href="${pageMaker.startPage -1 }" aria-label="Previous">
 				        <span aria-hidden="true">&laquo;</span>
 				      </a>
 				    </li>
-				    <li class="page-item"><a class="page-link" href="#">1</a></li>
-				    <li class="page-item"><a class="page-link" href="#">2</a></li>
-				    <li class="page-item"><a class="page-link" href="#">3</a></li>
+				    <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="num">
+					    <li class="page-item">
+					    	<a class="page-link ${pageMaker.criteria.pageNum == num ? 'active' : '' }" href="${num }">${num }</a>
+					    </li>
+				    
+				    </c:forEach>
 				    <li class="page-item">
-				      <a class="page-link" href="#" aria-label="Next">
+				      <a class="page-link ${pageMaker.next ? '' : 'disabled' }" href="${pageMaker.endPage + 1 }" aria-label="Next">
 				        <span aria-hidden="true">&raquo;</span>
 				      </a>
 				    </li>
@@ -75,3 +79,26 @@
 		</div>
 	</div>
 </div>
+
+<script>
+	$(function(){
+		let $noticeListForm = $("#noticeListForm");
+		let $pageNum = $(":input:hidden[name=pageNum]");
+		let $amount = $(":input:hidden[name=amount]");
+		
+		// 게시글 상세보기 
+		$(".notice .seq_no").on("click", function(e){
+			e.preventDefault();
+			let seq = $(this).attr("href");
+			let link = `/notice/detail/\${seq}`;
+			location.href = link;
+		});
+		
+		$(".notice .pagination .page-link").on("click", function(e){
+			e.preventDefault();
+			let num = $(this).attr("href");
+			$pageNum.val(num);
+			$noticeListForm.attr("action", "/notice/list").submit();
+		})
+	})
+</script>
