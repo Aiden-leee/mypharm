@@ -27,14 +27,23 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public NoticeDTO noticeRead(int seq) throws SQLException {
+	public NoticeDTO noticeRead(long seq) throws SQLException {
 		return this.noticeMapper.noticeSelectOne(seq);
 	}
 
 	@Override
-	public NoticeDTO noticeModify(int seq, String userid) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public Boolean noticeModify(NoticeDTO dto) throws SQLException {
+		return this.noticeMapper.noticeUpdate(dto) == 1;
+	}
+
+	@Override
+	public Boolean noticeWrite(NoticeDTO dto) throws SQLException {
+		return this.noticeMapper.noticeInsert(dto) == 1;
+	}
+
+	@Override
+	public Boolean noticeRemove(long seq, String userid) throws SQLException {
+		return this.noticeMapper.noticeDelete(seq, userid) == 1;
 	}
 
 

@@ -48,11 +48,6 @@
 					
 				</tbody>
 			</table>
-			
-			<div class="ui-board-bottom right pt-3">
-				<button type="button" class="btn point write">글쓰기</button>
-			</div>
-			
 			<form id="noticeListForm" action="/notice/detail" method="get">
 				<input type="hidden" name="pageNum" value="${pageMaker.criteria.pageNum }"/>
 				<input type="hidden" name="amount" value="${pageMaker.criteria.amount }" />
@@ -91,17 +86,6 @@
 		let $pageNum = $(":input:hidden[name=pageNum]");
 		let $amount = $(":input:hidden[name=amount]");
 		
-		let deleted = `${deleted}`;
-		let wrtied = `${writed}`;
-		if( wrtied == "true" ) {
-			$(".alertModal-content").text("게시글이 등록되었습니다.");
-			$("#alertModal").modal("show");
-		}
-		if( deleted == "true" ) {
-			$(".alertModal-content").text("게시글이 삭제되었습니다.");
-			$("#alertModal").modal("show");
-		}
-		
 		// 게시글 상세보기 
 		$(".notice .seq_no").on("click", function(e){
 			e.preventDefault();
@@ -110,18 +94,11 @@
 			location.href = link;
 		});
 		
-		// 페이지 이동
 		$(".notice .pagination .page-link").on("click", function(e){
 			e.preventDefault();
 			let num = $(this).attr("href");
 			$pageNum.val(num);
 			$noticeListForm.attr("action", "/notice/list").submit();
 		})
-		
-		// 글작성
-		$(".btn.write").on("click", function(e){
-			location.href = "/notice/write";
-		})
-		
 	})
 </script>

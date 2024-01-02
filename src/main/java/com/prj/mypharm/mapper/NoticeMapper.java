@@ -15,9 +15,15 @@ public interface NoticeMapper {
 	// 공지사항 총 게시글 
 	int noticeTotalRows() throws SQLException;
 	
+	// 게시글 쓰기
+	int noticeInsert(NoticeDTO dto) throws SQLException;
+	
 	// 게시글 상세보기 
-	NoticeDTO noticeSelectOne(@Param("seq") int seq) throws SQLException;
+	NoticeDTO noticeSelectOne(@Param("seq") long seq) throws SQLException;
 	
 	// 게시글 수정 
-	NoticeDTO noticeUpdate(@Param("seq") int seq, @Param("userid") String userid) throws SQLException;
+	int noticeUpdate(NoticeDTO dto) throws SQLException;
+	
+	// 게시글 삭제 
+	int noticeDelete(@Param("seq") long seq, @Param("writer") String userid) throws SQLException;
 }

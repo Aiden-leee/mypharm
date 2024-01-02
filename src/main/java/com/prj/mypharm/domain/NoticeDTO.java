@@ -18,7 +18,7 @@ public class NoticeDTO {
 	REGDATE NOT NULL DATE          
 	UPDATED 
 	 */
-	private int seq;
+	private long seq;
 	private String title;
 	private String content;
 	private String writer;

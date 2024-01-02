@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.prj.mypharm.mapper.NoticeReplyMapper">
+	<!-- // 댓글 목록
+	List<ReplyDTO> noticeReplySelect(Criteria cri, long seq) throws SQLException; -->
+	<select id="noticeReplySelect" resultType="com.prj.mypharm.domain.ReplyDTO">
+		<![CDATA[
+		SELECT *
+		FROM (
+		    SELECT ROWNUM rn, rno, replyer, content, regdate, seq
+		    FROM notice_reply
+		    WHERE seq = #{seq} AND rno > 0 AND ROWNUM BETWEEN 1 AND #{cri.pageNum} * #{cri.amount}
+		    ORDER BY rno DESC
+		) r
+		WHERE r.rn > (#{cri.pageNum}-1) * #{cri.amount}
+		ORDER BY r.rn
+		]]>
+	</select>
+	
+	<!-- 댓글 갯수  -->
+	<select id="noticeReplyTotal" resultType="int">
+		SELECT COUNT(rno)
+		FROM notice_reply
+		WHERE seq = #{seq}
+	</select>
+	
+	<!-- 댓글 생성 
+	int noticeReplyInsert(ReplyDTO dto) throws SQLException; -->
+	<insert id="noticeReplyInsert">
+		<selectKey order="BEFORE" keyProperty="rno" resultType="long">
+			SELECT seq_notice_reply.nextval
+			FROM dual
+		</selectKey>
+	
+		INSERT INTO notice_reply
+		VALUES ( #{rno}, #{replyer}, #{content}, SYSDATE, #{seq} )
+	</insert>
+	
+	<!-- // 댓글 수정
+	int noticeReplyUpdate(ReplyDTO dto) throws SQLException; -->
+	<update id="noticeReplyUpdate">
+		UPDATE notice_reply
+		SET content = #{content}, updated = SYSDATE
+		WHERE rno = #{rno}
+	</update>
+</mapper>
+

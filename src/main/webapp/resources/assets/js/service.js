@@ -1,13 +1,4 @@
 
-// 게시판 서비스 
-let boardService = (function(){
-	
-	
-	return {
-	
-	}
-})();
-
 
 // 행정구역 서비스 
 let localService = (function(){

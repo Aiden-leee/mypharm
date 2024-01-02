@@ -380,3 +380,29 @@ footer .container-fluid {
 	background: #efefef;
 	border: none;	
 }
+
+.dropdown .dropdown-item.active {
+	color: #fff;
+	background: #67b790;
+}
+
+
+
+/* reply */
+.reply-container .reply-list {
+
+}
+.reply-container .reply-list .reply {
+	padding: 15px 0;
+	border-bottom: 1px solid #eee;
+}
+.reply-container .reply-list .reply .reply-date {
+    color: #aaa;
+    font-size: 14px;
+}
+
+.reply-container .reply-list .reply .reply-etc {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}

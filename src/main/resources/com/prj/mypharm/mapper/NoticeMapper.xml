@@ -14,6 +14,7 @@
 		    SELECT rownum rn, seq, title, content, writer, regdate, updated
 		    FROM notice
 		    WHERE seq > 0 AND rownum BETWEEN 1 AND ${ pageNum } * ${ amount }
+		    ORDER BY seq DESC
 		) b
 		WHERE rn > ( ${ pageNum }-1) * ${ amount }
 		]]>
@@ -39,5 +40,32 @@
 		WHERE seq = #{seq}
 		]]>
    </select>
+   
+   <!-- // 게시글 쓰기
+	int noticeInsert(NoticeDTO dto) throws SQLException; -->
+	<insert id="noticeInsert">
+		<selectKey order="BEFORE" resultType="long" keyProperty="seq">
+	     	SELECT seq_notice.nextval 
+	     	FROM dual
+     	</selectKey>
+		INSERT INTO notice (seq, title, content, writer, regdate, updated)
+		VALUES (#{seq}, #{title}, #{content}, #{writer}, sysdate, sysdate)
+	</insert>
+   
+   <!-- 게시글 수정 
+	NoticeDTO noticeUpdate(NoticeDTO dto) throws SQLException; -->
+   <update id="noticeUpdate">
+   		UPDATE notice
+		SET title = #{title}, content = #{content}
+		    ,updated = SYSDATE
+		WHERE seq = #{seq} AND writer = #{writer}
+   </update>
+   
+   <!-- 게시글 삭제 
+	int noticeDelete(int seq, String userid) throws SQLException; -->
+	<delete id="noticeDelete">
+   		DELETE notice
+		WHERE seq = #{seq} AND writer = #{writer}	
+   	</delete>
 </mapper>
 

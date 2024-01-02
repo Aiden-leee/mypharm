@@ -18,7 +18,7 @@ public class Criteria {
 	private String keyword;	// 검색어
 
 	public Criteria() {
-		this(1,5);
+		this(1,10);
 	}
 	public Criteria(int pageNum, int amount) {
 		super();
