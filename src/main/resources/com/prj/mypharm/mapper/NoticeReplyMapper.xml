@@ -10,7 +10,7 @@
 		<![CDATA[
 		SELECT *
 		FROM (
-		    SELECT ROWNUM rn, rno, replyer, content, regdate, seq
+		    SELECT ROWNUM rn, rno, replyer, content, regdate, seq, updated
 		    FROM notice_reply
 		    WHERE seq = #{seq} AND rno > 0 AND ROWNUM BETWEEN 1 AND #{cri.pageNum} * #{cri.amount}
 		    ORDER BY rno DESC
@@ -35,7 +35,7 @@
 			FROM dual
 		</selectKey>
 	
-		INSERT INTO notice_reply
+		INSERT INTO notice_reply (rno, replyer, content, regdate, seq)
 		VALUES ( #{rno}, #{replyer}, #{content}, SYSDATE, #{seq} )
 	</insert>
 	
@@ -46,5 +46,12 @@
 		SET content = #{content}, updated = SYSDATE
 		WHERE rno = #{rno}
 	</update>
+	
+	<!-- // 댓글 삭제 
+	int noticeReplyDelete(Long rno) throws SQLException; -->
+	<delete id="noticeReplyDelete">
+		DELETE FROM notice_reply
+		WHERE rno = #{rno}
+	</delete>
 </mapper>
 

@@ -38,6 +38,6 @@ target/
 .metadata
 bin/
 tmp/
-
+readme_
 
 src/main/java/com/prj/mypharm/data/ApiData.java

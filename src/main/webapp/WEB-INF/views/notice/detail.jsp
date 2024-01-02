@@ -73,6 +73,9 @@
 		// 댓글 수정 
 		let $replyModifyModal = $("#replyModifyModal");
 		let $replyModifyContent = $(".replyModifyModal-content");
+		// 삭제 모달 
+		let $confirmDeleteModal = $("#confirmDeleteModal");
+		let $confirmDeleteModalContent = $(".confirmDeleteModal-content");
 		
 		let $detailForm = $("#detailForm");
 		let updated = `${updated}`;
@@ -146,7 +149,7 @@
 		})
 		
 		
-		
+		// 모달창 수정 컨펌 
 		$(".modified").on("click", function(){
 			let rno = $(":hidden[name='modalRno']").val();
 			let replyer = $(".modalReplyer").text();
@@ -154,7 +157,7 @@
 			let reply = {rno, replyer, content: replyContent }
 			
 			noticeReplyService.modify(reply, function(result){
-				if( result == "success") {
+				if( result == "updated") {
 					$("#alertModal").modal("show");
 					$(".alertModal-content").text("댓글이 수정되었습니다.");
 				}
@@ -180,6 +183,28 @@
 					$(".alertModal-content").text("댓글이 등록되었습니다.");
 				}
 				$reply.val("");
+				getReplyList();
+			})
+		})
+		
+		// 댓글 삭제 
+		$(document).on("click", ".reply .reply-remove", function(){
+			let $reply = $(this).parents(".reply");
+			let rno = $reply.find(":hidden[name='rno']").val();
+			$(":hidden[name='deleteRno']").val(rno);
+			
+			$confirmDeleteModal.modal("show");
+			$confirmDeleteModalContent.text("댓글을 삭제하겠습니까?");
+		});
+		
+		$(".deleteConfirm").on("click", function(){
+			let rno = $(":hidden[name='deleteRno']").val();
+			
+			noticeReplyService.remove(rno, function(result){
+				if( result == "deleted") {
+					$("#alertModal").modal("show");
+					$(".alertModal-content").text("댓글이 삭제 되었습니다.");
+				}
 				getReplyList();
 			})
 		})

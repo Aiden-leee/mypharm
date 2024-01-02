@@ -18,4 +18,7 @@ public interface NoticeReplyService {
 	
 	// 댓글 수정 
 	Boolean noticeReplyModify(ReplyDTO dto) throws SQLException;
+	
+	// 댓글 삭제 
+	Boolean noticeReplyRemove(Long rno) throws SQLException;
 }

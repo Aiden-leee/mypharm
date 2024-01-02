@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -71,7 +72,7 @@ public class NoticeReplyController {
 	@RequestMapping(value = "/{rno}"
 			, consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE}
 			, method = { RequestMethod.PUT, RequestMethod.PATCH })
-	public ResponseEntity<String> noticeReplyModify(@RequestBody ReplyDTO dto, @PathVariable("rno") long rno) {
+	public ResponseEntity<String> noticeReplyModify(@RequestBody ReplyDTO dto, @PathVariable("rno") Long rno) {
 		log.info("> noticeReplyModify...");
 		
 		System.out.println(dto);
@@ -83,8 +84,23 @@ public class NoticeReplyController {
 			e.printStackTrace();
 		} 
 
-		return isUpdated ? new ResponseEntity<>("success", HttpStatus.OK) 
+		return isUpdated ? new ResponseEntity<>("updated", HttpStatus.OK) 
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-
+	}
+	
+	// 댓글 삭제 
+	@DeleteMapping(value = "/{rno}", produces = {MediaType.TEXT_PLAIN_VALUE} )
+	public ResponseEntity<String> noticeReplyRemove(@PathVariable("rno") Long rno){
+		log.info("> noticeReplyRemove..");
+		
+		Boolean isDeleted = false;
+		
+		try {
+			isDeleted = noticeReplyService.noticeReplyRemove(rno);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return isDeleted ? new ResponseEntity<>("deleted", HttpStatus.OK)
+				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 }

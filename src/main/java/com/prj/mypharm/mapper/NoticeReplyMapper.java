@@ -20,4 +20,7 @@ public interface NoticeReplyMapper {
 	
 	// 댓글 수정
 	int noticeReplyUpdate(ReplyDTO dto) throws SQLException;
+	
+	// 댓글 삭제 
+	int noticeReplyDelete(Long rno) throws SQLException;
 }

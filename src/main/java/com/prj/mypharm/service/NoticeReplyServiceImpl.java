@@ -36,4 +36,9 @@ public class NoticeReplyServiceImpl implements NoticeReplyService {
 		return noticeReplyMapper.noticeReplyUpdate(dto) == 1;
 	}
 
+	@Override
+	public Boolean noticeReplyRemove(Long rno) throws SQLException {
+		return noticeReplyMapper.noticeReplyDelete(rno) == 1;
+	}
+
 }

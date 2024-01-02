@@ -64,6 +64,25 @@ let noticeReplyService = (function(){
 		});
 	}
 	
+	function remove(rno, callback) {
+		$.ajax({
+			type: "DELETE"
+			, url: `/noticeReplies/${rno}`
+			, contentType : "application/json; charset=UTF-8" // 요청 데이터 타입
+			, cache: false
+			, success: function(result, status, xhr) {
+				if( callback ) {
+					callback(result);
+				}
+			}
+			, error: function(xhr, status, er) {
+				if( error ) {
+					error(er);
+				}
+			}
+		});
+	}
+	
 	function displayTime(timeValue) {
 
 		var today = new Date();
@@ -92,6 +111,7 @@ let noticeReplyService = (function(){
 		add,
 		getList,
 		modify,
+		remove,
 		displayTime
 	}
 })();
