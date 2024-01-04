@@ -1,8 +1,11 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <script src="/resources/assets/js/noticeReply.js"></script>
+
+<sec:authentication property="principal" var="pinfo" />
 
 <div class="row find-pharm-title">
 	 <h3 class="ui-title px-0">공지사항</h3>
@@ -31,8 +34,12 @@
 			<div class="ui-board-bottom right pt-3">
 				<button type="button" class="btn default back">뒤로가기</button>
 				<button type="button" class="btn default list">목록</button>
-				<button type="button" class="btn point modify">수정</button>
-				<button type="button" class="btn point2 delete">삭제</button>
+				<sec:authorize access="isAuthenticated()" >
+				  <c:if test="${pinfo.username eq dto.writer}">
+				    <button type="button" class="btn point modify">수정</button>
+					<button type="button" class="btn point2 delete">삭제</button>
+				  </c:if>
+				</sec:authorize>
 			</div>
 			
 			
@@ -64,6 +71,13 @@
 
 <script>
 	$(function(){
+		
+		let replyer = null;
+		<sec:authorize access="isAuthenticated()">
+		  replyer = "<sec:authentication property='principal.username' />";
+		</sec:authorize>
+		
+		
 		let $replyAdd = $(".reply-write button.add");
 		let $reply = $(".reply-write textarea[name='reply']");
 		let $seq = $(":hidden[name='seq']");
@@ -111,23 +125,39 @@
 			$replyList.html("");
 			noticeReplyService.getList({seq:$seq.val(), page: page || 1}, function(result){
 				$totalReply.text(result.replyCnt);
+				
 				for(let rp of result.list) {
-					reply_html += `
-						<ul class="reply">
-							<li>
-								<strong class="replyer">\${rp.replyer}</strong>
-								<input type="hidden" name="rno" value="\${rp.rno}"/>
-							</li>
-							<li><p class="my-2 reply-content">\${rp.content}</p></li>
-							<li class="reply-etc">
-								<span class="reply-date">\${noticeReplyService.displayTime(rp.regdate)}</span>
-								<div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
-								  <button type="button" class="btn btn-outline-dark reply-modify">수정</button>
-								  <button type="button" class="btn btn-outline-dark reply-remove">삭제</button>
-								</div>
-							</li>
-						</ul>
-					`;
+					if( replyer == rp.replyer ) {
+						reply_html += `
+							<ul class="reply">
+								<li>
+									<strong class="replyer">\${rp.replyer}</strong>
+									<input type="hidden" name="rno" value="\${rp.rno}"/>
+								</li>
+								<li><p class="my-2 reply-content">\${rp.content}</p></li>
+								<li class="reply-etc">
+									<span class="reply-date">\${noticeReplyService.displayTime(rp.regdate)}</span>
+									<div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+									  <button type="button" class="btn btn-outline-dark reply-modify">수정</button>
+									  <button type="button" class="btn btn-outline-dark reply-remove">삭제</button>
+									</div>
+								</li>
+							</ul>
+						`;
+					}else {
+						reply_html += `
+							<ul class="reply">
+								<li>
+									<strong class="replyer">\${rp.replyer}</strong>
+									<input type="hidden" name="rno" value="\${rp.rno}"/>
+								</li>
+								<li><p class="my-2 reply-content">\${rp.content}</p></li>
+								<li class="reply-etc">
+									<span class="reply-date">\${noticeReplyService.displayTime(rp.regdate)}</span>
+								</li>
+							</ul>
+						`;
+					}
 				}
 				$replyList.html(reply_html);
 				replyPaging(result.pageMaker);
@@ -172,7 +202,7 @@
 		})
 		$("#confirmModal .confirm").on("click", function(){
 			let reply = {
-				replyer: "user1",
+				replyer,
 				content: $reply.val(),
 				seq: $seq.val()
 			}

@@ -1,6 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+
+<sec:authentication property="principal" var="pinfo" />
 
 <div class="row find-pharm-title">
 	 <h3 class="ui-title px-0">공지사항</h3>
@@ -12,10 +15,10 @@
 			<div class="ui-board-top">
 				<span>Total: <strong>${pageMaker.total}</strong></span>
 			</div>
-			<table width="100%">
+			<table style="width: 100%">
 				<colgroup>
 					<col width="100px" />
-					<col  />
+					<col />
 					<col width="120px"/>
 					<col width="120px"/>
 				</colgroup>
@@ -50,7 +53,11 @@
 			</table>
 			
 			<div class="ui-board-bottom right pt-3">
-				<button type="button" class="btn point write">글쓰기</button>
+				<sec:authorize access="isAuthenticated()" >
+				  <c:if test="${pinfo.username eq 'admin'}">
+					<button type="button" class="btn point write">글쓰기</button>
+				  </c:if>
+				</sec:authorize>
 			</div>
 			
 			<form id="noticeListForm" action="/notice/detail" method="get">

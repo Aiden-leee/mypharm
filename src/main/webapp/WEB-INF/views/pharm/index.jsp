@@ -85,7 +85,10 @@
 
 <script>
 	$(function(){
-		 
+		var csrfHeaderName = `${_csrf.headerName}`;
+		var csrfTokenValue = `${_csrf.token}`;
+		pharmService.init(csrfHeaderName,csrfTokenValue);
+		
 		let $si = $(".search-wrap select[name=si]");	// 시 
 		let $gu = $(".search-wrap select[name=gu]");	// 구
 		let $dong = $(".search-wrap select[name=dong]"); // 동 
@@ -113,11 +116,11 @@
 			$(".pharmacy-view").children().remove();
 			$(".pharmacy-view").append(`
 					<table class="empty-pharmacy">
-			<tr>
-				<td>이곳에 선택한 약국 정보가 나타납니다.</td>
-			</tr>
-		</table>		
-	`);
+						<tr>
+							<td>이곳에 선택한 약국 정보가 나타납니다.</td>
+						</tr>
+					</table>		
+			`);
 		});
 		
 		// 시 선택시 
@@ -132,9 +135,9 @@
 					$gu.append(`<option value='특별자치' >특별자치</option>`);
 					return;
 				}
-		for(let si of data) {
-			$gu.append(`<option value='\${si}' >\${si}</option>`);
-		}
+				for(let si of data) {
+					$gu.append(`<option value='\${si}' >\${si}</option>`);
+				}
 			});
 
 		})
@@ -146,9 +149,9 @@
 			if( gu == 0 ) return;
 			
 			localService.getDong(si, gu, function(data){
-		for(let dong of data) {
-			$dong.append(`<option value='\${dong.dong}' data-lat='\${dong.lat}' data-lng='\${dong.lng}'>\${dong.dong}</option>`);
-		}
+				for(let dong of data) {
+					$dong.append(`<option value='\${dong.dong}' data-lat='\${dong.lat}' data-lng='\${dong.lng}'>\${dong.dong}</option>`);
+				}
 			});
 		})
 		
@@ -162,11 +165,11 @@
 		
 
 		function getDongPharmList(latlng){
-	$(".pharmacy-list").children().remove();
+			$(".pharmacy-list").children().remove();
 			
-	$(".spinner-border-wrap").show();
-	pharmService.selectPharm(latlng.lat, latlng.lng, function(result){
-		$(".spinner-border-wrap").hide();
+			$(".spinner-border-wrap").show();
+		pharmService.selectPharm(latlng.lat, latlng.lng, function(result){
+				$(".spinner-border-wrap").hide();
 				if( result.length < 1 || result == null) {
 					$("#alertModal .alertModal-content").text("해당 지역에 약국이 없습니다.");
 					$("#alertModal").modal("show");

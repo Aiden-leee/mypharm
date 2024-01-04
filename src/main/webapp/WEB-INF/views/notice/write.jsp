@@ -1,6 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+
+<sec:authentication property="principal" var="pinfo" />
 
 <div class="row find-pharm-title">
 	 <h3 class="ui-title px-0">공지사항</h3>
@@ -12,15 +15,16 @@
 			<form id="postForm" action="/notice/write" method="post">
 				<div class="ui-board-detail">
 					<div class="ui-board-detail-head">
-						<h3><input type="text" name="title" placeholder="글제목을 입력하세요." style="width:100%"/></h3>
+						<h3 class="pb-0"><input type="text" name="title" placeholder="글제목을 입력하세요." style="width:100%"/></h3>
 						<div class="detail-row">
-							<strong class="writer">관리자</strong>
+							<strong class="writer">${pinfo.username }</strong>
 						</div>
 					</div>
 					<div class="ui-board-detail-content">
 						<textarea rows="10" cols="" style="width: 100%" name="content" placeholder="글 내용을 입력하세요.">${dto.content }</textarea>
 					</div>
 				</div>
+				<input type="hidden" name="${ _csrf.parameterName }" value="${ _csrf.token }">
 			</form>
 			<div class="ui-board-bottom right pt-3">
 				<button type="button" class="btn default back">뒤로가기</button>

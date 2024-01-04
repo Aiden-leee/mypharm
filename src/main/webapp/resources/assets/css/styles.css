@@ -4,7 +4,9 @@ body {
 .wrap {
 	height: 100%;
 }
-
+a {
+	text-decoration: none;
+}
 ul, li {
 	list-style: none;
 	padding: 0;
@@ -387,7 +389,6 @@ footer .container-fluid {
 }
 
 
-
 /* reply */
 .reply-container .reply-list {
 
@@ -405,4 +406,23 @@ footer .container-fluid {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+}
+
+
+
+/* icon */
+.bi-check-circle {
+	visibility: hidden;
+}
+.bi-check-circle.ok {
+	visibility: visible;
+	color: #67b790;
+}
+.bi-check-circle.invalid {
+	visibility: visible;
+	color: #d64343;
+}
+
+.login-box > span > a{
+	color: #333;
 }

@@ -59,6 +59,14 @@ let localService = (function(){
 
 // 약국 서비스 
 var pharmService = (function(){
+
+	var csrfHeaderName;
+	var csrfTokenValue;
+	
+	function init(_csrfname,_csrftoken) {
+		csrfHeaderName = _csrfname;
+		csrfTokenValue = _csrftoken;
+	}
 	
 	// 약국 조회 	
 	function selectPharm(lat, lng, callback){
@@ -75,6 +83,9 @@ var pharmService = (function(){
 			, dataType: "json"
 			, contentType: "application/json; charset=utf-8"
 			, cache: false
+			, beforeSend: function(xhr){
+				xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
+			}
 			, success: function(result, status, xhr){
 				//$(".spinner-border-wrap").hide();
 				//console.timeEnd();
@@ -117,6 +128,7 @@ var pharmService = (function(){
 	}
 	
 	return {
+		init,
 		selectPharm,
 		getDongPharm
 	}
