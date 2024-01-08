@@ -26,10 +26,8 @@
 [ medicine ] - 의약품 데이터 <br />
 [ members ] - 회원 데이터 <br /> <br />
 
-
-
-
 <hr />
+
 ### 추가 및 변경  
 - java version 11 변경  <br />
 - spring framework version 5.0.7.RELEASE 변경 <br />
