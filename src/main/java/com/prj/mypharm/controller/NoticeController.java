@@ -1,5 +1,6 @@
 package com.prj.mypharm.controller;
 
+import java.security.Principal;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -61,8 +62,7 @@ public class NoticeController {
 	@PostMapping("/notice/write")
 	public String noticeWritePost(NoticeDTO dto, RedirectAttributes rttr) {
 		log.info("> noticeWritePost..");
-		System.out.println(dto);
-		dto.setWriter("관리자");
+		
 		try {
 			if( noticeService.noticeWrite(dto) ) {
 				rttr.addFlashAttribute("writed", true);
@@ -110,13 +110,10 @@ public class NoticeController {
 		return "base/notice/modify.tiles";
 	}
 	@PostMapping("modify")
-	public String noticeModifyPost(NoticeDTO dto, RedirectAttributes rttr) {
+	public String noticeModifyPost(NoticeDTO dto, Principal principal, RedirectAttributes rttr) {
 		log.info("> noticeModifyPost...");
 		
-		String userid = "관리자";
 		long seq = dto.getSeq();
-		dto.setWriter(userid);
-		System.out.println(dto);
 		try {
 			if(	noticeService.noticeModify(dto) ) {
 				rttr.addFlashAttribute("updated", true);
@@ -132,9 +129,11 @@ public class NoticeController {
 	}
 	
 	@PostMapping("/delete")
-	public String noticeRemove(@RequestParam("seq") long seq, RedirectAttributes rttr) {
+	public String noticeRemove(@RequestParam("seq") long seq, Principal principal, RedirectAttributes rttr) {
+		log.info("> noticeRemove...");
+		System.out.println(">>>> -----" +principal);
 		try {
-			if( noticeService.noticeRemove(seq, "관리자") ) {
+			if( noticeService.noticeRemove(seq, principal.getName()) ) {
 				rttr.addFlashAttribute("deleted", true);
 				return "redirect:/notice/list";
 			}

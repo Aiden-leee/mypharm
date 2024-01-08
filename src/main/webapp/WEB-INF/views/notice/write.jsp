@@ -18,6 +18,7 @@
 						<h3 class="pb-0"><input type="text" name="title" placeholder="글제목을 입력하세요." style="width:100%"/></h3>
 						<div class="detail-row">
 							<strong class="writer">${pinfo.username }</strong>
+							<input type="hidden" name="writer" value="${pinfo.username }" />
 						</div>
 					</div>
 					<div class="ui-board-detail-content">

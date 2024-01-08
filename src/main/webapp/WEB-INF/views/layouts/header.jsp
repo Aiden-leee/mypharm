@@ -7,7 +7,7 @@
 	   <nav class="navbar navbar-expand-lg bg-body-tertiary">
 		  <div class="container-fluid p-0">
 		    <h1 class="main-logo">
-		    		<a class="navbar-brand" data-page="pharm" href="/">마이팜</a>
+		    		<a class="navbar-brand" data-page="pharm" href="/"><img src="/resources/assets/images/mypharm-logo.png" alt="마이팜" /></a>
 		    	</h1>
 		    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		      <span class="navbar-toggler-icon"></span>
@@ -18,7 +18,7 @@
 		          <a class="nav-link" data-page="pharm" href="/" >약국찾기</a>
 		        </li>
 		        <li class="nav-item" >
-		          <a class="nav-link" data-page="medicine" href="#">의약품검색</a>
+		          <a class="nav-link" data-page="medicine" href="/medicine/list">의약품검색</a>
 		        </li>
 		        <li class="nav-item dropdown" >
 		          <a class="nav-link dropdown-toggle" data-group="community" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

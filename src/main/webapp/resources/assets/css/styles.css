@@ -12,6 +12,11 @@ ul, li {
 	padding: 0;
 	margin: 0;
 }
+
+.txt-right {
+	text-align: right;
+}
+
 .main-logo {
 	display: flex;
 	margin-bottom: 0;
@@ -97,7 +102,7 @@ ul, li {
 }
 
 footer .container-fluid {
-  height: 280px;
+  height: 200px;
   background: #eee;
 }
 
@@ -425,4 +430,71 @@ footer .container-fluid {
 
 .login-box > span > a{
 	color: #333;
+}
+
+
+/* medicine */
+.medicine-container .card-body > span {
+	color: #666;	
+}
+
+.search-container {
+	display: flex;
+	justify-content: center;
+}
+
+.search-container .search-ipt {
+	width: 500px;	
+}
+
+/* medicine detail */
+.medicine-detail .medicine-detail-info .card-header {
+	background: #d8eddb;	
+}
+
+.medicine-detail .medicine-detail-info .card-body ul li {
+	display: flex;
+	margin-bottom: 15px;
+}
+
+.medicine-detail .medicine-detail-info .card-body ul li strong {
+	position: relative;
+	display: inline-block;
+	width: 100px;
+	padding: 5px 10px;
+	box-sizing: border-box;
+}
+
+.medicine-detail .medicine-detail-info .card-body ul li strong:after {
+	content: "";
+	position: absolute;
+	right: 0;
+	top: 50%;
+	transform: translateY(-50%);
+	display: block;
+	width: 1px;
+	height: 20px;
+	background: #aaa;	
+}
+
+.medicine-detail .medicine-detail-info .card-body ul li span {
+	display: inline-block;
+	width: 100%;
+	padding: 5px 10px 5px 30px;
+	box-sizing: border-box;	
+}
+
+.medicine-detail .medicine-detail-info .card-body ul li:last-child {
+	margin-bottom: 0;
+}
+
+.medicine-detail .medicine-detail-info .medicine-img {
+	width: 100%;
+	text-align: center;	
+}
+.medicine-detail .medicine-detail-info .medicine-img img {
+	display: inline-block;
+	width: 100%;
+	max-width: 500px;
+	border-radius: 15px;
 }

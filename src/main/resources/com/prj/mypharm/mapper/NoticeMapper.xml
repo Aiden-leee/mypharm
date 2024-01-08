@@ -65,7 +65,7 @@
 	int noticeDelete(int seq, String userid) throws SQLException; -->
 	<delete id="noticeDelete">
    		DELETE notice
-		WHERE seq = #{seq} AND writer = #{writer}	
+		WHERE seq = #{seq} AND writer = #{userid}
    	</delete>
 </mapper>
 

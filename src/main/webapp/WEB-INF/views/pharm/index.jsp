@@ -49,7 +49,7 @@
 		</div>
 </div>
 <div class="row">
-	<div id="map" class="tg_map" style="width:100%;height:400px;border-radius: 10px;">
+	<div id="map" class="tg_map" style="width:100%;height:500px;border-radius: 10px;">
 		<div class="spinner-border-wrap" style="display: none">
  			<div class="spinner-border" role="status">
 		  		<span class="visually-hidden">Loading...</span>
@@ -71,17 +71,7 @@
 	</div>
 </div>
 
-<div class="pharmacy-list">
-	<%-- <div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title">${dutyName }</h5>
-    <h6 class="card-subtitle mb-2 text-body-secondary">${dutyAddr }</h6>
-    <p class="card-text">${dutyTel1 }</p>
-    <a href="#" class="card-link">Card link</a>
-    <a href="#" class="card-link">Another link</a>
-  </div>
-</div> --%>
-</div>
+<div class="pharmacy-list"></div>
 
 <script>
 	$(function(){

@@ -12,7 +12,10 @@
 		<form id="signupForm" method="POST">
 			<div class="mb-3 ipt">
 			  <label for="idFormControlInput" class="form-label">아이디 <i class="bi bi-check-circle"></i></label>
-			  <input type="text" class="form-control" id="idFormControlInput" name="id" placeholder="영문 or 영문+숫자 4~12자 입력">
+			  <div class="input-group">
+				  <input type="text" class="form-control" id="idFormControlInput" name="id" placeholder="영문 or 영문+숫자 4~12자 입력">
+				  <button type="button" class="btn default idcheck">중복체크 <i class="bi"></i></button>			  
+			  </div>
 			</div>
 			<div class="mb-3 ipt">
 			  <label for="passwordFormControlInput" class="form-label">비밀번호 <i class="bi bi-check-circle"></i></label>
@@ -122,6 +125,9 @@ function researchPostCode() {
 </script>
 <script>
 	$(function(){
+		let idDuplicate = true;
+		let isSignup = `${isSignup}`;
+		
 		let $signupForm = $("#signupForm");
 		let $idFormControlInput = $("#idFormControlInput");
 		let $passwordFormControlInput = $("#passwordFormControlInput");
@@ -233,6 +239,12 @@ function researchPostCode() {
 		$(".signup").on("click", function(){
 			addrchk = validateAddr();
 			
+			if( idDuplicate ) {
+				confirmChkIcon(!idDuplicate, $idFormControlInput);
+				$idFormControlInput.focus();
+				return false;
+			}
+			
 			if( !idchk ) {
 				confirmChkIcon(idchk, $idFormControlInput);
 				$idFormControlInput.focus();
@@ -271,7 +283,47 @@ function researchPostCode() {
 			$addr.val( $addr.val() + " " + $detailAddr.val() + $extraAddress.val() );
 			$signupForm.attr("action", "/auth/signup")
 						.submit();
-			
+		})
+		
+		if( isSignup == "success" ) {
+			$(".alertModal-content").html("회원가입이 완료되었습니다. <br /> 로그인페이지로 이동합니다.");
+			$("#alertModal").modal("show");
+			$("#alertModal .confirm").on("click", function(){
+				location.href = "/auth/signin";
+			});
+		}else if( isSignup == "fail" ) {
+			$(".alertModal-content").html("회원가입이 실패되었습니다.");
+			$("#alertModal").modal("show");
+		}
+		
+		$(".idcheck").on("click", function(){
+			let id = $idFormControlInput.val();
+			$(".idcheck > i").removeClass();
+			if( id.length < 1 || !validateId(id) ) return; 
+			$.ajax({
+				url: `/auth/idcheck/\${id}`
+				, method: "GET"
+				, dataType: "json"
+				, contentType: "application/json; charset=utf-8"
+				, cache: false
+				, success: function(result, status, xhr){
+					console.log(result);
+					idDuplicate = result;
+					if( idDuplicate ) {
+						// 중복 
+						$(".idcheck > i").removeClass("bi-check-lg").addClass("bi-exclamation-circle");
+					}else {
+						// 중복x
+						$(".idcheck > i").removeClass("bi-exclamation-circle").addClass("bi-check-lg");
+					}
+					
+				}
+				, error: function(xhr, er){
+					if( error ) {
+						error(er);
+					}
+				}
+			})
 		})
 	})
 </script>

@@ -4,25 +4,25 @@
 	xmlns:security="http://www.springframework.org/schema/security"
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
-		
 	 <!-- 에러 : spring-security-4.2.xsd 수정. -->	
-	<bean id="customAccessDeniedHandler" class="com.prj.mypharm.security.CustomAccessDeniedHandler" />
+		
 	<bean id="onLoginSuccessHandler" class="com.prj.mypharm.security.OnLoginSuccessHandler" />
+	<bean id="customAccessDeniedHandler" class="com.prj.mypharm.security.CustomAccessDeniedHandler" />
 	
 	<!-- 접근 제한 설정  -->
 	<security:http pattern="/resources/**" security="none" />
 	<security:http pattern="/upload/**" security="none" />
 	
 	<security:http>
-		<!-- <security:intercept-url pattern="/notice/**" access="isAuthenticated()"/> -->
+		<security:intercept-url pattern="/notice/modify/**" access="hasRole('ADMIN')"/>
 		
 		<!-- 접근금지 발생시 직접 구현한 핸들러 통해서 처리  -->
 		<security:access-denied-handler ref="customAccessDeniedHandler" />
 		
 		<security:form-login
 			login-page="/auth/signin"
-			authentication-failure-url="/auth/signin?error"
-			default-target-url="/"
+			authentication-success-handler-ref="onLoginSuccessHandler"
+			authentication-failure-url="/auth/signin?status=fail"
 		/>
 		
 		<security:logout logout-url="/auth/logout" invalidate-session="true" logout-success-url="/" />

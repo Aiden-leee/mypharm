@@ -25,5 +25,5 @@ public interface NoticeMapper {
 	int noticeUpdate(NoticeDTO dto) throws SQLException;
 	
 	// 게시글 삭제 
-	int noticeDelete(@Param("seq") long seq, @Param("writer") String userid) throws SQLException;
+	int noticeDelete(@Param("seq") long seq, @Param("userid") String userid) throws SQLException;
 }

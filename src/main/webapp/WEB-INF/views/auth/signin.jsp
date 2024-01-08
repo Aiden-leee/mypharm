@@ -29,6 +29,12 @@
 
 <script>
 	$(function(){
+		let isLogin = `${param.status}`;
+		
+		if(isLogin == "fail") {
+			$(".alertModal-content").html("로그인이 실패되었습니다.");
+			$("#alertModal").modal("show");
+		}
 		$(".signin").on("click", function(){
 			$("#signinForm").attr("action", "/login")
 						.submit();

@@ -15,6 +15,7 @@
 						<h3><input type="text" name="title" value="${dto.title }" style="width:100%"/></h3>
 						<div class="detail-row">
 							<strong class="writer">${dto.writer }</strong>
+							<input type="hidden" name="writer" value="${dto.writer }"/>
 						</div>
 					</div>
 					<div class="ui-board-detail-content">
@@ -22,6 +23,7 @@
 					</div>
 				</div>
 				<input type="hidden" name="seq" value="${dto.seq}" />
+				<input type="hidden" name="${ _csrf.parameterName }" value="${ _csrf.token }">
 			</form>
 			<div class="ui-board-bottom right pt-3">
 				<button type="button" class="btn default back">뒤로가기</button>

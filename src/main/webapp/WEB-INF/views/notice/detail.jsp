@@ -29,13 +29,14 @@
 			</div>
 			<form id="detailForm" action="/notice/delete" method="post">
 				<input type="hidden" name="seq" value="${dto.seq }" />
+				<input type="hidden" name="${ _csrf.parameterName }" value="${ _csrf.token }">
 			</form>
 			
 			<div class="ui-board-bottom right pt-3">
 				<button type="button" class="btn default back">뒤로가기</button>
 				<button type="button" class="btn default list">목록</button>
 				<sec:authorize access="isAuthenticated()" >
-				  <c:if test="${pinfo.username eq dto.writer}">
+				  <c:if test="${pinfo.username eq 'admin'}">
 				    <button type="button" class="btn point modify">수정</button>
 					<button type="button" class="btn point2 delete">삭제</button>
 				  </c:if>
@@ -197,9 +198,18 @@
 		
 		// 댓글 등록
 		$replyAdd.on("click", function(){
-			$confirmModal.modal("show");
-			$confirmModalContent.text("댓글을 등록하겠습니까?");
+			if( replyer == null ) {
+				$("#loginConfirmModal").modal("show");
+			}else {
+				$confirmModal.modal("show");
+				$confirmModalContent.text("댓글을 등록하겠습니까?");
+			}
 		})
+		
+		$("#loginConfirmModal .login-confirm").on("click", function(){
+			location.href= "/auth/signin";
+		})
+		
 		$("#confirmModal .confirm").on("click", function(){
 			let reply = {
 				replyer,

@@ -30,9 +30,9 @@ public class Criteria {
 	public String getListLink() {
 		UriComponentsBuilder builder = UriComponentsBuilder.fromPath("")
 				.queryParam("pageNum", this.getPageNum())
-				.queryParam("amount", this.getAmount());
-//				.queryParam("type", this.getPageNum())
-//				.queryParam("keyword", this.getPageNum());
+				.queryParam("amount", this.getAmount())
+				.queryParam("keyword", this.getKeyword());
+//				.queryParam("type", this.getType());
 		return builder.toUriString();
 	}
 	

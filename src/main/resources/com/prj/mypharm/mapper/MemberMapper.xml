@@ -47,5 +47,21 @@
 		WHERE m.id = #{userid}
 	</select>
 	
+	
+	<!-- 권한 부여
+	int memberAddAuthority(@Param("userid") String userid, @Param("role") Role role) throws SQLException -->
+	<insert id="memberAddAuthority">
+		INSERT INTO members_authorities (username, authority)
+		VALUES ( #{userid} , #{role} )
+	</insert>
+	
+	<!-- id check 
+	int memberIdCheck(@Param("userid") String userid) throws SQLException-->
+	<select id="memberIdCheck" resultType="int">
+		SELECT COUNT(id)
+		FROM members
+		WHERE id = #{userid}
+	</select>
+	
 </mapper>
 
