@@ -7,19 +7,57 @@
 마커 클릭시 약국 상세 정보  <br />
 약국 영업중 영업종료 상태 구분 마커 출력   <br /> <br />
 
+
+#### 약국 지도 조회 (영상 2배속 재생 권장)
+
+https://github.com/Aiden-leee/mypharm/assets/52125590/2214aca2-ac3f-4096-a606-55575e71875c
+
+ <br />
+
 ### 2. 의약품 찾기 ( 공공데이터 open api 식품안전처 데이터 활용 )
 의약품 목록 조회 , 페이징 처리 <br>
 의약품 상세보기<br>
-의약품명 검색 기능 <br>
+의약품명 검색 기능 <br> <br />
+
+
+
+https://github.com/Aiden-leee/mypharm/assets/52125590/f58e5777-a575-4434-8f76-8774606b653c
+
+<br/>
 
 ### 2. 커뮤니티 - 공지사항
 공지사항 관리자 전용 글쓰기 기능 ( 스프링 시큐리티 활용 ) <br />
 공지사항 댓글 추가, 수정, 삭제, 목록조회 기능 (RESTful ajax 처리) <br />
 공지사항 게시글 회원만 댓글 작성 기능 ( 스프링 시큐리티 활용 ) <br /> <br />
 
+#### 글쓰기
+
+https://github.com/Aiden-leee/mypharm/assets/52125590/518f8aa7-d56c-4822-bee3-3c3f4638492a
+
+#### 댓글등록
+
+https://github.com/Aiden-leee/mypharm/assets/52125590/d4009497-5375-4cf9-b39b-3aa3e3ea2773
+
+#### 댓글 수정 삭제
+
+https://github.com/Aiden-leee/mypharm/assets/52125590/0b0eb45f-4ef8-4c71-9dbb-48fd753ce9a3
+
+
+
+<br/>
+ <br />
+ 
 ### 3. 로그인, 회원가입 
 스프링 시큐리티 회원가입, 로그인 기능  <br />
 다음주소 api 주소 검색 <br /> <br />
+
+
+#### 회원가입 
+
+
+https://github.com/Aiden-leee/mypharm/assets/52125590/c60631a4-6864-4050-9f10-b4a48f141b7c
+
+
 
 <hr /> 
 
