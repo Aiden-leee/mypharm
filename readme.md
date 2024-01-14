@@ -1,5 +1,8 @@
 ## MYPHARM (약국,의약품 정보 프로젝트)
 
+
+URL: http://ec2-54-180-88-17.ap-northeast-2.compute.amazonaws.com/
+
 ### 1. 약국찾기 ( 공공데이터 open api 약국 데이터 활용 ) 
 네이버 지도 api 활용 <br />
 지역 선택 검색 기능 (행정구역 데이터 활용) <br />
