@@ -18,7 +18,11 @@ public class NoticeServiceImpl implements NoticeService {
 
 	@Override
 	public List<NoticeDTO> noticeSelect(Criteria cri) throws SQLException {
-		return this.noticeMapper.noticeSelect(cri);
+		int amount = cri.getAmount();
+		int pageNum = cri.getPageNum();
+		int offset = 0;
+		offset = (pageNum-1) * amount;
+		return this.noticeMapper.noticeSelect(cri,offset);
 	}
 
 	@Override

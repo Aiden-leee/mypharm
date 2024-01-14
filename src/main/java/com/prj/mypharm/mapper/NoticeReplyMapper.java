@@ -10,7 +10,7 @@ import com.prj.mypharm.domain.ReplyDTO;
 
 public interface NoticeReplyMapper {
 	// 댓글 목록
-	List<ReplyDTO> noticeReplySelect(@Param("cri") Criteria cri, @Param("seq") long seq) throws SQLException;
+	List<ReplyDTO> noticeReplySelect(@Param("cri") Criteria cri, @Param("seq") long seq, @Param("offset") int offset) throws SQLException;
 	
 	// 댓글 갯수 
 	int noticeReplyTotal(Long seq) throws SQLException;

@@ -52,8 +52,6 @@ public class AddrController {
 		System.out.println(">>>>> si : " + si);
 		System.out.println(">>>>> gu : " + gu);
 
-		System.out.println(">>>>> si : " + si);
-
 		List<PharmDongVO> list = null;
 		try {
 			list = addrService.getDongList(si, gu);

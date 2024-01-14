@@ -10,7 +10,7 @@ import com.prj.mypharm.domain.NoticeDTO;
 
 public interface NoticeMapper {
 	// 공지사항 목록
-	List<NoticeDTO> noticeSelect(Criteria cri) throws SQLException;
+	List<NoticeDTO> noticeSelect(@Param("cri") Criteria cri, @Param("offset") int offset) throws SQLException;
 	
 	// 공지사항 총 게시글 
 	int noticeTotalRows() throws SQLException;

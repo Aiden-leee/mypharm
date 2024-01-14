@@ -11,12 +11,13 @@
 		<![CDATA[
 		SELECT *
 		FROM (
-		    SELECT rownum rn, seq, title, content, writer, regdate, updated
-		    FROM notice
-		    WHERE seq > 0 AND rownum BETWEEN 1 AND ${ pageNum } * ${ amount }
+		    SELECT @ROWNUM := @ROWNUM+1 as rn, seq, title, content, writer, regdate, updated
+		    FROM notice, (SELECT @ROWNUM := 0) as r
+		    WHERE seq > 0 AND (@ROWNUM:=0)=0
 		    ORDER BY seq DESC
+		    LIMIT #{offset}, #{cri.amount}
 		) b
-		WHERE rn > ( ${ pageNum }-1) * ${ amount }
+		WHERE b.rn > 0
 		]]>
 	</select> 
    
@@ -44,12 +45,8 @@
    <!-- // 게시글 쓰기
 	int noticeInsert(NoticeDTO dto) throws SQLException; -->
 	<insert id="noticeInsert">
-		<selectKey order="BEFORE" resultType="long" keyProperty="seq">
-	     	SELECT seq_notice.nextval 
-	     	FROM dual
-     	</selectKey>
-		INSERT INTO notice (seq, title, content, writer, regdate, updated)
-		VALUES (#{seq}, #{title}, #{content}, #{writer}, sysdate, sysdate)
+		INSERT INTO notice ( title, content, writer)
+		VALUES ( #{title}, #{content}, #{writer} )
 	</insert>
    
    <!-- 게시글 수정 
@@ -57,7 +54,7 @@
    <update id="noticeUpdate">
    		UPDATE notice
 		SET title = #{title}, content = #{content}
-		    ,updated = SYSDATE
+		    ,updated = NOW()
 		WHERE seq = #{seq} AND writer = #{writer}
    </update>
    

@@ -1,6 +1,7 @@
 package com.prj.mypharm.security;
 
 import java.io.IOException;
+import java.net.URL;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -42,13 +43,18 @@ public class OnLoginSuccessHandler implements AuthenticationSuccessHandler {
 		// 있을 경우 URI 등 정보를 가져와서 사용
 		if(savedRequest != null){
 			uri = savedRequest.getRedirectUrl();
-
+			
 			// 세션에 저장된 객체를 다 사용한 뒤에는 지워줘서 메모리 누수 방지
 			requestCache.removeRequest(request, response);
 		}else if(prevPage != null && !prevPage.equals("")){
 			 // ""가 아니라면 직접 로그인 페이지로 접속한 것
         	uri = prevPage;
         }
+		
+		String urlpath = new URL(uri).getPath();
+		if( urlpath.equals("/auth/signup") ) {
+			uri = "/";
+		}
 		
 		System.out.println(prevPage);
 		response.sendRedirect(uri);

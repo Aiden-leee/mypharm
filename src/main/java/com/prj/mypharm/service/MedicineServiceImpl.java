@@ -18,7 +18,11 @@ public class MedicineServiceImpl implements MedicineService {
 	
 	@Override
 	public List<MedicineDTO> getMedicineList(Criteria cri) throws SQLException {
-		return medicineMapper.selectMedicineList(cri);
+		int amount = cri.getAmount();
+		int pageNum = cri.getPageNum();
+		int offset = 0;
+		offset = (pageNum-1) * amount;
+		return medicineMapper.selectMedicineList(cri, offset);
 	}
 
 	@Override

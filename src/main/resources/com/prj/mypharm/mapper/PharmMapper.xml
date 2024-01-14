@@ -21,14 +21,14 @@
 	<select id="getBoundPharmList" resultType="com.prj.mypharm.domain.PharmDTO" >
 		<![CDATA[
 			WITH pharm_distance AS (
-			    SELECT rownum, RNUM, DUTYADDR, DUTYNAME, DUTYETC, DUTYTEL1, DUTYTIME1S, DUTYTIME1C, DUTYTIME2S,
+			    SELECT @ROWNUM := @ROWNUM+1 as rownum, RNUM, DUTYADDR, DUTYNAME, DUTYETC, DUTYTEL1, DUTYTIME1S, DUTYTIME1C, DUTYTIME2S,
 			        DUTYTIME2C, DUTYTIME3S, DUTYTIME3C, DUTYTIME4S, DUTYTIME4C, DUTYTIME5S, DUTYTIME5C,
 			        DUTYTIME6S, DUTYTIME6C, DUTYTIME7S, DUTYTIME7C, DUTYTIME8S, DUTYTIME8C, HPID, POSTCDN1,
 			        POSTCDN2, WGS84LAT, WGS84LON,
-			        TO_NUMBER( (6371 * acos ( 
-			                    cos ( radians(#{lat}) ) * cos( radians( WGS84LAT ) ) * cos( radians( WGS84LON ) - radians( #{lng} ) )
+			         (6371 * acos ( 
+			                    cos ( radians(#{lat}) ) * cos( radians( WGS84LAT ) ) * cos( radians( WGS84LON ) - radians(#{lng}) )
 			                    + sin ( radians(#{lat} ) ) * sin( radians( WGS84LAT ) )
-			        )) ) distance
+			        )) distance
 			    FROM pharmacy
 			    WHERE  WGS84LAT BETWEEN #{lat} - 1/111 AND #{lat} + 1/111
 			        AND WGS84LON BETWEEN #{lng} - 1/111 AND #{lng} + 1/111
@@ -36,7 +36,7 @@
 			)
 			SELECT *
 			FROM pharm_distance
-			WHERE distance <= 1
+			WHERE distance <= 2
 			ORDER BY distance
 		]]>
 	</select>

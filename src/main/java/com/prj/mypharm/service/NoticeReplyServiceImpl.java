@@ -18,7 +18,11 @@ public class NoticeReplyServiceImpl implements NoticeReplyService {
 	
 	@Override
 	public ReplyPageDTO noticeReplyList(Criteria cri, Long seq) throws SQLException {
-		return new ReplyPageDTO(this.noticeReplyMapper.noticeReplySelect(cri, seq), this.noticeReplyMapper.noticeReplyTotal(seq), null);
+		int amount = cri.getAmount();
+		int pageNum = cri.getPageNum();
+		int offset = 0;
+		offset = (pageNum-1) * amount;
+		return new ReplyPageDTO(this.noticeReplyMapper.noticeReplySelect(cri, seq, offset), this.noticeReplyMapper.noticeReplyTotal(seq), null);
 	}
 
 	@Override
