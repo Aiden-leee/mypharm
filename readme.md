@@ -92,8 +92,8 @@ https://github.com/Aiden-leee/mypharm/assets/52125590/c60631a4-6864-4050-9f10-b4
 [ notice ] - 공지사항 글 데이터 <br />
 [ notice_reply ] - 공지사항의 댓글 데이터 <br />
 [ medicine ] - 의약품 데이터 <br />
-[ members ] - 회원 데이터 <br /> <br />
-[ members_authorities ] <br /><br />
+[ members ] - 회원 데이터 <br />
+[ members_authorities ] - 회원 권한 데이터<br /><br />
 
 <hr />
 
