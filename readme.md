@@ -8,8 +8,8 @@ URL: http://ec2-54-180-88-17.ap-northeast-2.compute.amazonaws.com/
 #### Tools  <br />
 STS3.9.18 <br />
 sql developer or DBeaver <br />
-Postman <br /> <br />
-AWS EC2, RDS mysql
+Postman <br />
+AWS EC2, RDS mysql <br />
 
 #### 라이브러리 버전<br />
 Java 11<br />
