@@ -1,4 +1,4 @@
-## MYPHARM (약국,의약품 정보 프로젝트)
+## MYPHARM (약국,의약품 정보 개인 프로젝트)
 
 
 URL: http://ec2-54-180-88-17.ap-northeast-2.compute.amazonaws.com/
