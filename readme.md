@@ -1,4 +1,29 @@
-## MYPHARM (약국,의약품 정보 프로젝트)
+## MYPHARM (약국,의약품 정보 개인 프로젝트)
+
+
+URL: http://ec2-54-180-88-17.ap-northeast-2.compute.amazonaws.com/
+
+## 환경 설정
+
+#### Tools  <br />
+STS3.9.18 <br />
+sql developer or DBeaver <br />
+Postman <br />
+AWS EC2, RDS mysql <br />
+
+#### 라이브러리 버전<br />
+Java 11<br />
+Spring 5.0.7 <br />
+servlet 3.1.0  <br />
+tiles 3.0.8 <br />
+json-simple 1.1.1 <br />
+jackson-databind 2.13.0 <br />
+mysql-connector-java 8.0.33 <br />
+HikariCP 5.0.1 <br />
+mybatis 3.4.6 <br />
+mybatis-spring 1.3.2 <br />
+lombok 1.18.28 <br />
+spring-security-web 5.0.7 <br /> <br />
 
 ### 1. 약국찾기 ( 공공데이터 open api 약국 데이터 활용 ) 
 네이버 지도 api 활용 <br />
@@ -67,7 +92,8 @@ https://github.com/Aiden-leee/mypharm/assets/52125590/c60631a4-6864-4050-9f10-b4
 [ notice ] - 공지사항 글 데이터 <br />
 [ notice_reply ] - 공지사항의 댓글 데이터 <br />
 [ medicine ] - 의약품 데이터 <br />
-[ members ] - 회원 데이터 <br /> <br />
+[ members ] - 회원 데이터 <br />
+[ members_authorities ] - 회원 권한 데이터<br /><br />
 
 <hr />
 
