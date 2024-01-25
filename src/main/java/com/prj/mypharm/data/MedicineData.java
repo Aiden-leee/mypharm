@@ -18,7 +18,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import com.prj.mypharm.domain.MedicineDTO;
+import com.prj.mypharm.medicine.domain.MedicineDTO;
 
 public class MedicineData {
 	public static void main(String[] args) throws IOException, ParseException {

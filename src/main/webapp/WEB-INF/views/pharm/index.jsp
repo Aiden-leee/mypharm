@@ -91,10 +91,12 @@
 		// 초기 약국 조회 
 		function initSelectPharm() {
 			$(".spinner-border-wrap").show();
-			pharmService.selectPharm(37.56605095, 126.9823729, function(data){
-				initMap(data);
-				$(".spinner-border-wrap").hide();
-			})
+			setTimeout(function(){
+				pharmService.selectPharm(37.56605095, 126.9823729, function(data){
+					initMap(data);
+					$(".spinner-border-wrap").hide();
+				})
+			},0);
 		}
 		
 		// 초기화 버튼

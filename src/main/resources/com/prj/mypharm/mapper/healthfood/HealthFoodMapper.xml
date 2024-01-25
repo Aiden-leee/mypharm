@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.prj.mypharm.mapper.HealthFoodMapper">
+	<!-- // 건강기능식품 조회 
+	ArrayList<HealthFoodDTO> selectHealthFoodList() throws SQLException;
+	-->
+	<select id="selectHealthFoodList" resultType="com.prj.mypharm.healthfood.domain.HealthFoodDTO">
+		SELECT @ROWNUM := @ROWNUM+1 as rn, pno, pcode, pname, subtitle, content, img_name, amount, price, regdate
+		FROM products, (SELECT @ROWNUM :=0) r
+	</select>
+	
+	<!-- // 상세보기
+	HealthFoodDTO selectOneHealthFood(int pno) throws SQLException; -->
+	<select id="selectOneHealthFood" resultType="com.prj.mypharm.healthfood.domain.HealthFoodDTO">
+		SELECT pno, pcode, pname, subtitle, content, img_name, amount, price, regdate
+		FROM products
+		WHERE pno = #{pno}
+	</select>
+	
+	<!-- // 목록 총 갯수
+	int selectTotalCount() throws SQLException; -->
+	<select id="selectTotalCount" resultType="int">
+		SELECT COUNT(pno)
+		FROM products
+	</select>
+</mapper>
+

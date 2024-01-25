@@ -20,6 +20,9 @@
 		        <li class="nav-item" >
 		          <a class="nav-link" data-page="medicine" href="/medicine/list">의약품검색</a>
 		        </li>
+		        <!-- <li class="nav-item" >
+		          <a class="nav-link" data-page="healthfood" href="/health/list">건강기능식품</a>
+		        </li> -->
 		        <li class="nav-item dropdown" >
 		          <a class="nav-link dropdown-toggle" data-group="community" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 		            커뮤니티

@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>내가 먹는 의약품 정보 검색 | 마이팜</title>
+  <title>약국 의약품 정보는 마이팜</title>
   
   <link rel="stylesheet" type="text/css" href="/resources/assets/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="/resources/assets/css/styles.css">

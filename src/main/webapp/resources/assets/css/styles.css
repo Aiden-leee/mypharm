@@ -6,11 +6,16 @@ body {
 }
 a {
 	text-decoration: none;
+	color: #666;
 }
 ul, li {
 	list-style: none;
 	padding: 0;
 	margin: 0;
+}
+
+.txt-center {
+	text-align: center;
 }
 
 .txt-right {
@@ -497,4 +502,82 @@ footer .container-fluid {
 	width: 100%;
 	max-width: 500px;
 	border-radius: 15px;
+}
+
+.healthfood .card {
+	cursor: pointer;
+}
+
+.healthfood .card .card-body .price-box .price {
+	font-weight: bold;
+}
+
+.healthfood-detail .healthfood-product-image {
+	text-align: center;
+	border: 1px solid #ddd;
+	border-radius: 10px;
+}
+
+.healthfood-detail .healthfood-product-image img {
+	width: 100%;
+	border-radius: 10px;
+}
+
+.healthfood-detail .detail-content img {
+	width: 100%;
+}
+
+.healthfood-detail .product-info-box .price-box > ul > li {
+	font-size: 1.2rem;
+}
+
+.healthfood-detail .product-info-box .price-box > ul > li .p-price {
+	font-size: 1.5rem;
+	font-weight: bold;	
+}
+
+.healthfood-detail .product-info-box .price-box > ul > li strong {
+	display: inline-block;
+	min-width: 100px;
+}
+
+.healthfood-detail .product-info-box .total-price {
+	font-size: 1.2rem;	
+	border-top: 2px solid #888;
+	border-bottom: 2px solid #888;
+}
+.healthfood-detail .product-info-box .total-price > strong {
+	font-size: 1.7rem;	
+}
+
+/* order */
+.order-details .total-order {
+	border-top: 1px solid #888;
+	border-bottom: 1px solid #888;
+}
+
+.order-details table {
+	width: 100%;
+}
+.order-details table tr:not(:first-child) td {
+	border-bottom: 1px solid #ddd;
+}
+
+.order-details table tr th {
+	border-top: 2px solid #666;
+	background: #f3f3f3;
+}
+.order-details table tr th,
+.order-details table tr td {
+	padding: 10px 15px;
+	text-align: center;
+}
+
+
+.order-details table tr td.order-image img {
+	max-width: 120px;
+}
+
+.order-details table tr td .order-quantity {
+	width: 60px;
 }

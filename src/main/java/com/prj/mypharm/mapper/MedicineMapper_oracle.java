@@ -5,8 +5,8 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.prj.mypharm.domain.Criteria;
-import com.prj.mypharm.domain.MedicineDTO;
+import com.prj.mypharm.medicine.domain.MedicineDTO;
+import com.prj.mypharm.utils.Criteria;
 
 public interface MedicineMapper_oracle {
 	// 약품 조회, 검색

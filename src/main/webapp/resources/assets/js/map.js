@@ -4,6 +4,7 @@ let loadCheck = true;
 let markers = [];
 let infoWindows = [];
 function initMap(data) {
+
   var mapOptions = {
     center: new naver.maps.LatLng(37.56605095, 126.9823729),
     mapTypeControl: false,
@@ -186,12 +187,12 @@ function transRangeTime(t1,t2,fmt) {
 }
 
 function openTimeCheck(pharmacy) {
+
   let d = new Date();
   let day = d.getDay() == 0 ? 7 : d.getDay(); // 0: 일요일 -> 7 변환
   let hours = d.getHours();
   let minutes = d.getMinutes();
   let currentTime = parseInt(hours + "" + minutes);
-
   let start = pharmacy[`dutyTime${day}s`];
   let end = pharmacy[`dutyTime${day}c`];
   if (start == 0 || end == 0) return false;

@@ -5,8 +5,8 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.prj.mypharm.domain.Criteria;
-import com.prj.mypharm.domain.ReplyDTO;
+import com.prj.mypharm.notice.domain.ReplyDTO;
+import com.prj.mypharm.utils.Criteria;
 
 public interface NoticeReplyMapper {
 	// 댓글 목록

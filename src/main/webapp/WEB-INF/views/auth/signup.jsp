@@ -125,6 +125,7 @@ function researchPostCode() {
 </script>
 <script>
 	$(function(){
+		// 회원가입 
 		let idDuplicate = true;
 		let isSignup = `${isSignup}`;
 		
@@ -312,9 +313,11 @@ function researchPostCode() {
 					if( idDuplicate ) {
 						// 중복 
 						$(".idcheck > i").removeClass("bi-check-lg").addClass("bi-exclamation-circle");
+						confirmChkIcon(!idDuplicate, $idFormControlInput);
 					}else {
 						// 중복x
 						$(".idcheck > i").removeClass("bi-exclamation-circle").addClass("bi-check-lg");
+						confirmChkIcon(!idDuplicate, $idFormControlInput);
 					}
 					
 				}

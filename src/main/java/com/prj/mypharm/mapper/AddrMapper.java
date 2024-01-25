@@ -3,7 +3,7 @@ package com.prj.mypharm.mapper;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.prj.mypharm.domain.PharmDongVO;
+import com.prj.mypharm.pharmacy.domain.PharmDongVO;
 
 public interface AddrMapper {
 	// 시 조회 

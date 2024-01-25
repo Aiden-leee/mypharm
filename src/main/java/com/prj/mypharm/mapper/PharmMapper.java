@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.prj.mypharm.domain.PharmDTO;
+import com.prj.mypharm.pharmacy.domain.PharmDTO;
 
 public interface PharmMapper {
 	// 약국 전체 조회 

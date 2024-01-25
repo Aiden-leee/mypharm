@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.prj.mypharm.mapper.MemberMapper">
+	<!-- // 회원정보 반환 
+	MemberVO getMember(String id) throws ClassNotFoundException, SQLException; -->
+	<select id="getMember" resultType="membervo">
+		SELECT *
+		FROM members
+		WHERRE id = #{id}
+	</select>
+	
+	
+	<!-- // 회원가입 
+	int memberJoin(MemberVO member) throws ClassNotFoundException, SQLException; -->
+	<insert id="memberJoin">	
+		INSERT INTO members (member_no, id, pwd, name, email, phone, addr, zipcode, gender, birth, regdate, updated)
+		VALUES (null, #{id}, #{pwd}, #{name}, #{email}, #{phone}, #{addr}, #{zipcode}, #{gender}, #{birth}, NOW(), null )
+	</insert>
+	
+	<!-- // 회원정보 + 권한 정보 
+	MemberVO memberInfo(@Param("userid") String userid); --> 
+	<resultMap type="membervo" id="memberMap">
+		<id property="id" column="id" />
+		<result property="id" column="id" />
+		<result property="pwd" column="pwd" />
+		<result property="name" column="name" />
+		<result property="regdate" column="regdate" />
+		<collection property="authList" resultMap="authMap"></collection>
+	</resultMap>
+	
+	<resultMap type="com.prj.mypharm.security.domain.AuthVO" id="authMap">
+		<result property="username" column="username" />
+		<result property="authority" column="authority" />
+	</resultMap>
+	
+	<select id="memberInfo" resultMap="memberMap">
+		SELECT id, pwd, name, regdate, authority
+		FROM members m LEFT JOIN members_authorities auth ON m.id = auth.username
+		WHERE m.id = #{userid}
+	</select>
+	
+	
+	<!-- 권한 부여
+	int memberAddAuthority(@Param("userid") String userid, @Param("role") Role role) throws SQLException -->
+	<insert id="memberAddAuthority">
+		INSERT INTO members_authorities (username, authority)
+		VALUES ( #{userid} , #{role} )
+	</insert>
+	
+	<!-- id check 
+	int memberIdCheck(@Param("userid") String userid) throws SQLException-->
+	<select id="memberIdCheck" resultType="int">
+		SELECT COUNT(id)
+		FROM members
+		WHERE id = #{userid}
+	</select>
+	
+</mapper>
+
